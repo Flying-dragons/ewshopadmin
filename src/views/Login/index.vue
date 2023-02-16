@@ -53,22 +53,28 @@
 import { reactive, ref } from "vue";
 import { PersonOutline, LockClosedOutline} from "@vicons/ionicons5";
 
-interface FormState {
-  email: string;
-  password: string;
-}
+  interface FormState {
+      email: string;
+      password: string;
+  }
 
-const formInline = reactive({
-  username: 'super@a.com',
-  password: '123123'
-})
+  const formInline = reactive({
+      username: 'super@a.com',
+      password: '123123'
+  })
 
-// 验证规则
-const rules = {
-  // 失去焦点时触发
-  username:{ required: true, message: "请输入用户名", trigger: "blur" },
-  password:{ required: true, message: "请输入密码", trigger: "blur" },
-};
+  // 验证规则
+  const rules = {
+      // 失去焦点时触发
+      username:{ required: true, message: "请输入用户名", trigger: "blur" },
+      password:{ required: true, message: "请输入密码", trigger: "blur" },
+  };
+
+  //登录
+  const handleSubmit = () => {
+    console.log(formInline)
+  };
+
 
 </script>
 
