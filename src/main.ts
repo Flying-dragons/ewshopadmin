@@ -2,6 +2,9 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 
+import '@/style/tailwind.css'
+import '@/style/index.css'
+
 //引入router文件
 import router from "./router";
 
