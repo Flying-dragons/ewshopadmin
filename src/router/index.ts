@@ -4,6 +4,7 @@ import {createRouter,createWebHistory} from "vue-router";
 //  也可以从其他文件导入
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login/index.vue'
+import Dashboard from '@/views/dashboard/Dashboard.vue'
 
 //2.定义一些路由 创建了一些路由规则
 //  每个路由都需要映射到一个组件。
@@ -14,8 +15,14 @@ const routes = [
         component: Home
     },
     {
-        path: '/Login',
+        path: '/login',
+        name: 'login',
         component: Login
+    },
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: Dashboard
     },
 ]
 

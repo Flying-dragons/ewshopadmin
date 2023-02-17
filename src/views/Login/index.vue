@@ -56,6 +56,12 @@ import { PersonOutline, LockClosedOutline} from "@vicons/ionicons5";
 import {useUserStore} from "@/store/user";
 import {useRouter} from "vue-router";
 
+import {useMessage} from "naive-ui";
+
+const message = useMessage();
+(<any>window).$message = useMessage();
+
+
 
 //定义
 const formRef = ref();
@@ -106,11 +112,11 @@ const router = useRouter();
             userStore.login(params).then(_res => { // res是userStore里面返回的数据
                 // 关闭窗口
                 // Comment(res);
-                // message.success("登陆成功");
+                message.success("登陆成功");
                 loading.value = false;
                 // 弹出提示 登陆成功
                 // 跳转回首页
-                // router.push({name: "dashboard"});
+                router.push({name: "dashboard"});
                 console.log(_res)
             }).catch(() => {
                 // console.log(err);
