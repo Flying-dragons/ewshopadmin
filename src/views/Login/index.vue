@@ -53,6 +53,19 @@
 import { reactive, ref } from "vue";
 import { PersonOutline, LockClosedOutline} from "@vicons/ionicons5";
 
+import {useUserStore} from "@/store/user";
+import {useRouter} from "vue-router";
+
+
+//定义
+const formRef = ref();
+const loading = ref(false);
+
+const userStore = useUserStore();
+const router = useRouter();
+
+
+
   interface FormState {
       email: string;
       password: string;
@@ -72,7 +85,48 @@ import { PersonOutline, LockClosedOutline} from "@vicons/ionicons5";
 
   //登录
   const handleSubmit = () => {
-    console.log(formInline)
+    // console.log(formInline)
+      // 表单验证
+      formRef.value.validate(async (errors: any) => {
+        console.log(!errors)
+        if (!errors) {
+          // return; // 有错误就返回，不执行，不再往下发送请求
+          // 接收数据
+          const {username, password} = formInline;
+          // 显示登录中
+          loading.value = true;
+          // 调整数据结构
+          const params: FormState = {
+            email: username,
+            password:password,
+          };
+          try {
+            // 执行登录操作
+            console.log(params)
+            userStore.login(params).then(_res => { // res是userStore里面返回的数据
+                // 关闭窗口
+                // Comment(res);
+                // message.success("登陆成功");
+                loading.value = false;
+                // 弹出提示 登陆成功
+                // 跳转回首页
+                // router.push({name: "dashboard"});
+                console.log(_res)
+            }).catch(() => {
+                // console.log(err);
+                loading.value = false;
+            });
+              // 成功跳转到首页
+              // 失败后提示
+          } finally {
+            loading.value = false;
+          }
+        } else {
+          // message.error('请填写完整信息，并且进行验证码校验')
+        }
+      })
+
+
   };
 
 
