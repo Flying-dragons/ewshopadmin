@@ -28,5 +28,18 @@ const router = createRouter({
     routes, // `routes: routes` 的缩写 //绑定第二步的路由规则
 })
 
+//配置前置守卫
+router.beforeEach((to,from,next) => {
+    if (to.name != 'login') {
+        // 如果不是登录页面，判断是否登录
+        if (!localStorage.getItem('token')) {
+            next({
+                path: '/login',
+            });
+        }
+    }
+    next();
+});
+
 //对外暴露 共享出去
 export default router

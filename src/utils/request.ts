@@ -15,6 +15,7 @@ request.interceptors.request.use((config)=>{
     //报错的时候定义的前置拦截器会抛出一个错误信息
     return Promise.reject(error);
 });
+
 //4.定义前置拦截器，响应拦截器，请求发出之前触发的
 request.interceptors.response.use((response)=>{
     //响应回来的数据操作
@@ -23,5 +24,6 @@ request.interceptors.response.use((response)=>{
     // 报错的时候抛出一个报错信息
     return Promise.reject(error);
 });
+
 //抛出对象信息 导出axios实例 对外暴露
 export default request
